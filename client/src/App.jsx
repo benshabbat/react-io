@@ -1,33 +1,9 @@
-import { createElement, useState } from "react";
-
-function Title(name) {
-  return createElement("h1", null, name);
-}
-
-function Test({name}) {
-  const [title,setTitle] = useState("")
-  return (
-    createElement(Title(name)),
-    createElement(
-      "form",
-      null,
-      createElement("input", {
-        value: "check",
-        name: "firstName",
-        placeholder: "firstName",
-      }),
-      createElement("input", {
-        value: "check",
-        name: "lastName",
-        placeholder: "lastName",
-      }),
-      createElement("input", { value: "check", name: "age", placeholder: "age" })
-    )
-  );
-}
+import { createElement } from "react";
+import Form from "./components/Form";
+import Hedaer from "./components/Hedaer";
+import "./style.css"
 function App() {
-  // return Test("david", "dd", 12)
-  return <Test/>
+  return createElement("div", null, createElement(Hedaer), createElement(Form));
 }
 
 export default App;
