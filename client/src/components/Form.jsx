@@ -4,39 +4,52 @@ export default function Form() {
   const [formData, setFormData] = useState();
 
   const handleChange = (e) => {
-    const { name, value, checked, type } = e.target;
+    const { name, value } = e.target;
     setFormData((prevState) => ({
       ...prevState,
-      [name]: type === "checkbox" ? checked : value,
+      [name]: value,
     }));
     console.log(value);
   };
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    console.log(formData)
+    console.log(formData);
   };
+
+  const inputData = (type, name) => {
+    return createElement("input", {
+      type,
+      placeholder: name,
+      name,
+      onChange: handleChange,
+    });
+  };
+
   return createElement(
     "form",
-    {onSubmit:onSubmit},
+    { onSubmit: onSubmit },
     createElement("label", {}, "FirstName"),
-    createElement("input", {
-      name: "firstName",
-      placeholder: "firstName",
-      onChange: handleChange,
-    }),
+    inputData("text", "firstName"),
+    // createElement("input", {
+    //   name: "firstName",
+    //   placeholder: "firstName",
+    //   onChange: handleChange,
+    // }),
     createElement("label", { className: "red" }, "LastName"),
-    createElement("input", {
-      name: "lastName",
-      placeholder: "lastName",
-      onChange: handleChange,
-    }),
+    inputData("text", "lastName"),
+    // createElement("input", {
+    //   name: "lastName",
+    //   placeholder: "lastName",
+    //   onChange: handleChange,
+    // }),
     createElement("label", {}, "Age"),
-    createElement("input", {
-      name: "age",
-      placeholder: "age",
-      onChange: handleChange,
-    }),
-    createElement("button", { type:"submit"}, "Submit")
+    inputData("number", "age"),
+    // createElement("input", {
+    //   name: "age",
+    //   placeholder: "age",
+    //   onChange: handleChange,
+    // }),
+    createElement("button", { type: "submit" }, "Submit")
   );
 }
