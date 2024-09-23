@@ -1,7 +1,12 @@
 import { createElement, useState } from "react";
-
+import Profile from "./Profile";
 export default function Form() {
   const [formData, setFormData] = useState();
+  const iputsDataArr = [
+    { type: "text", name: "firstName", title: "First Name" },
+    { type: "text", name: "lastName", title: "Last Name" },
+    { type: "number", name: "age", title: "Age" },
+  ];
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -26,42 +31,37 @@ export default function Form() {
     });
   };
 
-  const preInput = (header) => {
-    return createElement("h2", { className: "red" }, header);
+  const preInput = (title) => {
+    return createElement("h2", { className: "red" }, title);
   };
 
-
-  const creatSubmitButton =()=>{
-    return createElement("button", { type: "submit" }, "Submit")
-  }
+  const creatSubmitButton = () => {
+    return createElement("button", { type: "submit" }, "Submit");
+  };
   return createElement(
     "form",
     { onSubmit: onSubmit },
-    // createElement("label", {}, "FirstName"),
     preInput("First Name"),
     inputData("text", "firstName"),
-    // createElement("input", {
-    //   name: "firstName",
-    //   placeholder: "firstName",
-    //   onChange: handleChange,
-    // }),
     preInput("Last Name"),
-    // createElement("label", { className: "red" }, "LastName"),
     inputData("text", "lastName"),
-    // createElement("input", {
-    //   name: "lastName",
-    //   placeholder: "lastName",
-    //   onChange: handleChange,
-    // }),
-    // createElement("label", {}, "Age"),
     preInput("Age"),
     inputData("number", "age"),
-    // createElement("input", {
-    //   name: "age",
-    //   placeholder: "age",
-    //   onChange: handleChange,
-    // }),
-    // createElement("button", { type: "submit" }, "Submit")
-    creatSubmitButton()
+    creatSubmitButton(),
+
+    createElement(Profile, { user: formData })
   );
 }
+
+
+
+
+
+//why not working
+
+    // iputsDataArr.forEach((input) => {
+    //   return createElement("",null,
+    //     preInput(input.title),
+    //     inputData(input.type, input.name)
+    //   );
+    // }),
