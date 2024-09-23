@@ -26,30 +26,42 @@ export default function Form() {
     });
   };
 
+  const preInput = (header) => {
+    return createElement("h2", { className: "red" }, header);
+  };
+
+
+  const creatSubmitButton =()=>{
+    return createElement("button", { type: "submit" }, "Submit")
+  }
   return createElement(
     "form",
     { onSubmit: onSubmit },
-    createElement("label", {}, "FirstName"),
+    // createElement("label", {}, "FirstName"),
+    preInput("First Name"),
     inputData("text", "firstName"),
     // createElement("input", {
     //   name: "firstName",
     //   placeholder: "firstName",
     //   onChange: handleChange,
     // }),
-    createElement("label", { className: "red" }, "LastName"),
+    preInput("Last Name"),
+    // createElement("label", { className: "red" }, "LastName"),
     inputData("text", "lastName"),
     // createElement("input", {
     //   name: "lastName",
     //   placeholder: "lastName",
     //   onChange: handleChange,
     // }),
-    createElement("label", {}, "Age"),
+    // createElement("label", {}, "Age"),
+    preInput("Age"),
     inputData("number", "age"),
     // createElement("input", {
     //   name: "age",
     //   placeholder: "age",
     //   onChange: handleChange,
     // }),
-    createElement("button", { type: "submit" }, "Submit")
+    // createElement("button", { type: "submit" }, "Submit")
+    creatSubmitButton()
   );
 }
