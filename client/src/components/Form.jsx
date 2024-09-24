@@ -41,6 +41,22 @@ export default function Form() {
   return createElement(
     "form",
     { onSubmit: onSubmit },
+    //Get Data checked
+    iputsDataArr.forEach((input) => {
+        console.log(input)
+      }),
+
+    //not working  
+    iputsDataArr.forEach((input) => {
+        return createElement("input", {
+                type:input.type,
+                placeholder: input.name,
+                name:input.name,
+                onChange: handleChange,
+              })
+      }),
+
+    //without loop  
     preInput("First Name"),
     inputData("text", "firstName"),
     preInput("Last Name"),
@@ -59,8 +75,8 @@ export default function Form() {
 
 //why not working
 
-    // iputsDataArr.forEach((input) => {
-    //   return createElement("",null,
+   // iputsDataArr.forEach((input) => {
+    //   return createElement("div",null,
     //     preInput(input.title),
     //     inputData(input.type, input.name)
     //   );
