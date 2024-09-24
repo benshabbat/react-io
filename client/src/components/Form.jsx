@@ -43,7 +43,6 @@ export default function Form() {
   return createElement(
     "form",
     { onSubmit: onSubmit },
-    //working
     ...iputsDataArr.map((input) =>
         createElement(
           "div",
@@ -52,26 +51,17 @@ export default function Form() {
           inputData(input.type, input.name)
         )
       ),
-    // //Get Data checked
-    // iputsDataArr.forEach((input) => {
-    //     console.log(input)
-    //   }),
-
-    
- 
-
-    //without loop
-    preInput("First Name"),
-    inputData("text", "firstName"),
-    preInput("Last Name"),
-    inputData("text", "lastName"),
-    preInput("Age"),
-    inputData("number", "age"),
     creatSubmitButton(),
 
     createElement(Profile, { user: formData })
   );
 }
+
+// //Get Data checked
+// iputsDataArr.forEach((input) => {
+//     console.log(input)
+//   }),
+
 
 //why not working
 
@@ -81,3 +71,26 @@ export default function Form() {
 //     inputData(input.type, input.name)
 //   );
 // }),
+
+
+
+
+    // //without loop
+    // preInput("First Name"),
+    // inputData("text", "firstName"),
+    // preInput("Last Name"),
+    // inputData("text", "lastName"),
+    // preInput("Age"),
+    // inputData("number", "age"),
+
+
+
+        // //working
+    // ...iputsDataArr.map((input) =>
+    //     createElement(
+    //       "div",
+    //       { key: input.name },
+    //       preInput(input.title),
+    //       inputData(input.type, input.name)
+    //     )
+    //   ),
