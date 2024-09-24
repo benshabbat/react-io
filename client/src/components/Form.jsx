@@ -1,5 +1,6 @@
 import { createElement, useState } from "react";
 import Profile from "./Profile";
+
 export default function Form() {
   const [formData, setFormData] = useState();
   const iputsDataArr = [
@@ -38,25 +39,28 @@ export default function Form() {
   const creatSubmitButton = () => {
     return createElement("button", { type: "submit" }, "Submit");
   };
+
   return createElement(
     "form",
     { onSubmit: onSubmit },
-    //Get Data checked
-    iputsDataArr.forEach((input) => {
-        console.log(input)
-      }),
+    //working
+    ...iputsDataArr.map((input) =>
+        createElement(
+          "div",
+          { key: input.name },
+          preInput(input.title),
+          inputData(input.type, input.name)
+        )
+      ),
+    // //Get Data checked
+    // iputsDataArr.forEach((input) => {
+    //     console.log(input)
+    //   }),
 
-    //not working  
-    iputsDataArr.forEach((input) => {
-        return createElement("input", {
-                type:input.type,
-                placeholder: input.name,
-                name:input.name,
-                onChange: handleChange,
-              })
-      }),
+    
+ 
 
-    //without loop  
+    //without loop
     preInput("First Name"),
     inputData("text", "firstName"),
     preInput("Last Name"),
@@ -69,15 +73,11 @@ export default function Form() {
   );
 }
 
-
-
-
-
 //why not working
 
-   // iputsDataArr.forEach((input) => {
-    //   return createElement("div",null,
-    //     preInput(input.title),
-    //     inputData(input.type, input.name)
-    //   );
-    // }),
+// iputsDataArr.forEach((input) => {
+//   return createElement("div",null,
+//     preInput(input.title),
+//     inputData(input.type, input.name)
+//   );
+// }),
