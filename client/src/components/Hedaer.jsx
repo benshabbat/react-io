@@ -3,7 +3,7 @@ export default function Hedaer() {
   return createElement(
     "ul",
     null,
-    createElement("li", null, "text1"),
-    createElement("li", null, "text2")
+    createElement("li", null, createElement("a", {href:"#form"}, "Form")),
+    createElement("li", null, createElement("a", {href:"#profile"}, "Profile"))
   );
 }

@@ -42,7 +42,7 @@ export default function Form() {
 
   return createElement(
     "form",
-    { onSubmit: onSubmit },
+    { onSubmit: onSubmit ,id:"form"},
     ...iputsDataArr.map((input) =>
         createElement(
           "div",
@@ -53,7 +53,7 @@ export default function Form() {
       ),
     creatSubmitButton(),
 
-    createElement(Profile, { user: formData })
+    formData ?createElement(Profile, { user: formData }):null
   );
 }
 
