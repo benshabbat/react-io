@@ -1,10 +1,11 @@
 import { createElement, useState } from "react";
 import Profile from "./Profile";
 import Card from "./Card";
+import{inputData,preInput,creatSubmitButton} from "../utils/create.js";
 
 export default function Form() {
   const [formData, setFormData] = useState();
-  const iputsDataArr = [
+  const inputsDataArr = [
     { type: "text", name: "firstName", title: "First Name" },
     { type: "text", name: "lastName", title: "Last Name" },
     { type: "number", name: "age", title: "Age" },
@@ -24,32 +25,16 @@ export default function Form() {
     console.log(formData);
   };
 
-  const inputData = (type, name) => {
-    return createElement("input", {
-      type,
-      placeholder: name,
-      name,
-      onChange: handleChange,
-    });
-  };
-
-  const preInput = (title) => {
-    return createElement("h2", { className: "red" }, title);
-  };
-
-  const creatSubmitButton = () => {
-    return createElement("button", { type: "submit" }, "Submit");
-  };
 
   return createElement(
     "form",
     { onSubmit: onSubmit ,id:"form"},
-    ...iputsDataArr.map((input) =>
+    ...inputsDataArr.map((input) =>
         createElement(
           "div",
           { key: input.name },
           preInput(input.title),
-          inputData(input.type, input.name)
+          inputData(input.type, input.name,handleChange)
         )
       ),
     creatSubmitButton(),
@@ -96,3 +81,23 @@ export default function Form() {
     //       inputData(input.type, input.name)
     //     )
     //   ),
+
+
+
+    
+//   const inputData = (type, name) => {
+//     return createElement("input", {
+//       type,
+//       placeholder: name,
+//       name,
+//       onChange: handleChange,
+//     });
+//   };
+
+//   const preInput = (title) => {
+//     return createElement("h2", { className: "red" }, title);
+//   };
+
+//   const creatSubmitButton = () => {
+//     return createElement("button", { type: "submit" }, "Submit");
+//   };
