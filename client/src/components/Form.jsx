@@ -1,5 +1,6 @@
 import { createElement, useState } from "react";
 import Profile from "./Profile";
+import Card from "./Card";
 
 export default function Form() {
   const [formData, setFormData] = useState();
@@ -53,7 +54,8 @@ export default function Form() {
       ),
     creatSubmitButton(),
 
-    formData ?createElement(Profile, { user: formData }):null
+    createElement(Card),
+    formData ?createElement(Profile, { user: formData }):null,
   );
 }
 
