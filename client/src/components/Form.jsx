@@ -1,6 +1,6 @@
 import { createElement, useState } from "react";
 import Profile from "./Profile";
-import Card from "./Card";
+import {Card,CardElementWithFuncOfElement} from "./Card";
 import{inputData,preInput,creatSubmitButton} from "../utils/create.js";
 
 export default function Form() {
@@ -39,7 +39,7 @@ export default function Form() {
       ),
     creatSubmitButton(),
 
-    createElement(Card),
+    createElement(CardElementWithFuncOfElement),
     formData ?createElement(Profile, { user: formData }):null,
   );
 }

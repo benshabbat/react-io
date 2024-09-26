@@ -1,6 +1,6 @@
 import { createElement, Fragment } from "react";
 import Form from "./components/Form";
-import Hedaer from "./components/Hedaer";
+import {Hedaer} from "./components/Hedaer";
 import "./style.css"
 
 function App() {
