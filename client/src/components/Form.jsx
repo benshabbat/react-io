@@ -3,6 +3,7 @@ import Profile from "./Profile";
 import {Card,CardWithFuncOfCreateElement} from "./Card";
 import{inputData,preInput,creatSubmitButton} from "../utils/create.js";
 import {Table,TableFunc} from "./Table.jsx";
+import { stateCustom } from "../hooksCustom/useStateCustom.js";
 
 export default function Form() {
   const [formData, setFormData] = useState();
@@ -11,6 +12,7 @@ export default function Form() {
     { type: "text", name: "lastName", title: "Last Name" },
     { type: "number", name: "age", title: "Age" },
   ];
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
