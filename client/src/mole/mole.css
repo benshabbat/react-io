@@ -8,6 +8,7 @@ body {
     width: 100%;
     height: 750px;
     position: fixed;
+    cursor: none;
   }
   
   header {
@@ -16,27 +17,30 @@ body {
     width: 100%;
     text-align: center;
     top: 5%;
-  }
-  
-  #hud {
+}
+
+#hud {
     display: flex;
     font-size: 40px;
     font-weight: bold;
     justify-content: space-between;
-  }
-  
-  #hud div {
+}
+
+#hud div {
     padding: 5%;
-  }
-  
-  #lawn {
+}
+
+#lawn {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
     margin-top: 30px;
     justify-content: space-around;
+}
+
+.cursor{
+    pointer-events: none;
   }
-  
   .hole {
     width: 120px;
     height: 150px;
@@ -46,7 +50,7 @@ body {
     display: flex;
     margin: 5%;
     background-position: 0 100%;
-  }
+}
   
   .up {
     background-position: 25% 100%;
