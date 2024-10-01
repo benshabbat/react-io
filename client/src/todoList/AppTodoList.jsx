@@ -1,6 +1,3 @@
-// import FooterToDo from "./FooterToDo";
-// import HeaderToDO from "./HeaderToDO";
-// import MainToDo from "./MainToDo";
 
 import { useState } from "react";
 
@@ -115,10 +112,13 @@ export default function AppTodoList() {
           <strong>{todos.filter((todo) => !todo.completed).length}</strong>{" "}
           items left
         </span>
-        <ul className="filters">
-          <li>
             <button className="clear-completed" onClick={clearCompleted}>
               Clear completed
+            </button>
+        <ul className="filters">
+          <li>
+            <button onClick={getAllCompleted}>
+              Completed
             </button>
           </li>
           <li>
