@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 
 export default function AppTodoList() {
@@ -6,12 +5,12 @@ export default function AppTodoList() {
   const [newTodo, setNewTodo] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("all");
- const [show,setShow]=useState(true);
+  const [show, setShow] = useState(true);
   const addTodo = (e) => {
     if (e.key === "Enter" && newTodo.trim() !== "") {
       setTodos([
         ...todos,
-        { id: Date.now(), title: newTodo, completed: false,active:true },
+        { id: Date.now(), title: newTodo, completed: false, active: true },
       ]);
       setNewTodo("");
     }
@@ -20,7 +19,9 @@ export default function AppTodoList() {
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed,active:!todo.active } : todo
+        todo.id === id
+          ? { ...todo, completed: !todo.completed, active: !todo.active }
+          : todo
       )
     );
   };
@@ -30,7 +31,7 @@ export default function AppTodoList() {
   const getActive = () => {
     setFilter("active");
   };
-  
+
   const getCompleted = () => {
     setFilter("completed");
   };
@@ -39,7 +40,7 @@ export default function AppTodoList() {
     if (filter === "completed") return todo.completed;
     return true;
   });
-  
+
   const clearCompleted = () =>
     setTodos(todos.filter((todo) => !todo.completed));
 
@@ -67,7 +68,7 @@ export default function AppTodoList() {
   };
 
   const toShowOrhide = () => {
-    setShow(!show)
+    setShow(!show);
   };
   return (
     <section className="todoapp">
@@ -86,7 +87,8 @@ export default function AppTodoList() {
       <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
-          {show&&filteredTodos?.map((todo) => (
+          {show &&
+            filteredTodos?.map((todo) => (
               <li
                 key={todo.id}
                 className={`${todo.completed ? "completed" : ""} ${
@@ -134,23 +136,30 @@ export default function AppTodoList() {
         )}
         <ul className="filters">
           <li>
-          <a
+            <a
+              href="#/"
+              onClick={getAll}
+              className={filter === "all" ? "selected" : ""}
+            >
+              All
+            </a>
+          </li>
+          <li>
+            <a
+              href="#/active"
+              onClick={getActive}
+              className={filter === "active" ? "selected" : ""}
+            >
+              Active
+            </a>
+          </li>
+          <li>
+            <a
               href="#/completed"
               onClick={getCompleted}
               className={filter === "completed" ? "selected" : ""}
             >
               Completed
-            </a>
-          </li>
-          <li>
-            <a href="#/" onClick={getAll}
-            className={filter === "all" ? "selected" : ""}>
-              All
-            </a>
-          </li>
-          <li>
-            <a  href="#/active" onClick={getActive}  className={filter === "active" ? "selected" : ""}>
-              Active
             </a>
           </li>
         </ul>
