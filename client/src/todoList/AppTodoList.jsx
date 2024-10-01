@@ -5,6 +5,7 @@ export default function AppTodoList() {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState("");
   const [editingId, setEditingId] = useState(null);
+  const [filter, setFilter] = useState("all");
 
   const addTodo = (e) => {
     if (e.key === "Enter" && newTodo.trim() !== "") {
@@ -24,7 +25,14 @@ export default function AppTodoList() {
     );
   };
   const getAll = () => {
-    setTodos(todos.map(todo=>todo))
+    setFilter("all");
+  };
+  const getActive = () => {
+    setFilter("active");
+  };
+  
+  const getCompleted = () => {
+    setFilter("completed");
   };
 
   
@@ -117,7 +125,7 @@ export default function AppTodoList() {
             </button>
         <ul className="filters">
           <li>
-            <button onClick={getAllCompleted}>
+            <button onClick={getCompleted}>
               Completed
             </button>
           </li>
