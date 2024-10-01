@@ -13,7 +13,7 @@ export default function AppTodoList() {
     if (e.key === "Enter" && newTodo.trim() !== "") {
       setTodos([
         ...todos,
-        { id: Date.now(), title: newTodo, completed: false },
+        { id: Date.now(), title: newTodo, completed: false,active:true },
       ]);
       setNewTodo("");
     }
@@ -22,7 +22,7 @@ export default function AppTodoList() {
   const toggleTodo = (id) => {
     setTodos(
       todos.map((todo) =>
-        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+        todo.id === id ? { ...todo, completed: !todo.completed,active:!todo.active } : todo
       )
     );
   };
@@ -70,7 +70,12 @@ export default function AppTodoList() {
         <ul className="todo-list">
           {todos &&
             todos?.map((todo) => (
-              <li key={todo.id} className={todo.completed ? "completed" : ""}>
+              <li
+                key={todo.id}
+                className={`${todo.completed ? "completed" : ""} ${
+                  editingId === todo.id ? "editing" : ""
+                }`}
+              >
                 <div className="view">
                   <input
                     className="toggle"
@@ -81,7 +86,10 @@ export default function AppTodoList() {
                   <label onDoubleClick={() => startEditing(todo.id)}>
                     {todo.title}
                   </label>
-                  <button className="destroy" onClick={deleteTodo} />
+                  <button
+                    className="destroy"
+                    onClick={() => deleteTodo(todo.id)}
+                  />
                 </div>
                 {editingId === todo.id && (
                   <input
@@ -102,9 +110,23 @@ export default function AppTodoList() {
           <strong>{todos.filter((todo) => !todo.completed).length}</strong>{" "}
           items left
         </span>
-        <button className="clear-completed" onClick={clearCompleted}>
-          Clear completed
-        </button>
+        <ul className="filters">
+          <li>
+            <button className="clear-completed" onClick={clearCompleted}>
+              Clear completed
+            </button>
+          </li>
+          <li>
+            <button onClick={getAll}>
+              All
+            </button>
+          </li>
+          <li>
+            <button onClick={getActive}>
+              Active
+            </button>
+          </li>
+        </ul>
       </footer>
     </section>
   );
