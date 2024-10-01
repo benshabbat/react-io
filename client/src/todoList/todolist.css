@@ -18,7 +18,7 @@ button {
 	appearance: none;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
-
+	font-smoothing: antialiased;
 }
 
 body {
@@ -31,6 +31,7 @@ body {
 	margin: 0 auto;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 	font-weight: 300;
 }
 
@@ -100,6 +101,7 @@ input[type="checkbox"] {
 	box-sizing: border-box;
 	-webkit-font-smoothing: antialiased;
 	-moz-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 .new-todo {
@@ -289,7 +291,7 @@ label[for='toggle-all'] {
 	display: inline;
 }
 
-.filters li button {
+.filters li a {
 	color: inherit;
 	margin: 3px;
 	padding: 3px 7px;
@@ -298,12 +300,12 @@ label[for='toggle-all'] {
 	border-radius: 3px;
 }
 
-.filters li button.selected,
-.filters li button:hover {
+.filters li a.selected,
+.filters li a:hover {
 	border-color: rgba(175, 47, 47, 0.1);
 }
 
-.filters li button.selected {
+.filters li a.selected {
 	border-color: rgba(175, 47, 47, 0.2);
 }
 

@@ -26,6 +26,11 @@ export default function AppTodoList() {
       )
     );
   };
+  const getAll = () => {
+    setTodos(todos.map(todo=>todo))
+  };
+
+  
   const clearCompleted = () =>
     setTodos(todos.filter((todo) => !todo.completed));
 
@@ -66,7 +71,7 @@ export default function AppTodoList() {
       </header>
 
       <section className="main">
-        <input className="toggle-all" type="checkbox" />
+        <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
           {todos &&
             todos?.map((todo) => (
