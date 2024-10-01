@@ -6,7 +6,7 @@ export default function AppTodoList() {
   const [newTodo, setNewTodo] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("all");
-
+ const [show,setShow]=useState(true);
   const addTodo = (e) => {
     if (e.key === "Enter" && newTodo.trim() !== "") {
       setTodos([
@@ -67,10 +67,7 @@ export default function AppTodoList() {
   };
 
   const toShowOrhide = () => {
-    const allCompleted = todos.every((todo) => todo.completed);
-    setTodos(
-      todos.map((todo) => ({ ...todo, completed: !allCompleted, active: allCompleted }))
-    );
+    setShow(!show)
   };
   return (
     <section className="todoapp">
@@ -89,7 +86,7 @@ export default function AppTodoList() {
       <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
-          {filteredTodos?.map((todo) => (
+          {show&&filteredTodos?.map((todo) => (
               <li
                 key={todo.id}
                 className={`${todo.completed ? "completed" : ""} ${
