@@ -1,23 +1,24 @@
-import HeaderPic from "./header.png"
+import { useState } from "react";
+import HeaderMole from "./HeaderMole";
 export default function AppMole() {
+
+    const [score, setScore] = useState(100)
+    const [time, setTime] = useState(30)
   return (
     <div id="game">
+      <HeaderMole />
+      <div id="hud">
+        <div id="time">{time}</div>
+        <div id="score">{score}</div>
+      </div>
 
-  <header><img src={HeaderPic} alt="Header pic"></img></header>
-
-  <div id="hud">
-    <div id="time">30</div>
-    <div id="score">100</div>
-  </div>
-
-  <div id="lawn">
-    <div className="hole"></div>
-    <div className="hole hit"></div>
-    <div className="hole sad"></div>
-    <div className="hole up"></div>
-    <div className="hole start"></div>
-  </div>
-
-</div>
-  )
+      <div id="lawn">
+        <div className="hole"></div>
+        <div className="hole hit"></div>
+        <div className="hole sad"></div>
+        <div className="hole up"></div>
+        <div className="hole start"></div>
+      </div>
+    </div>
+  );
 }
