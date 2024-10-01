@@ -65,6 +65,13 @@ export default function AppTodoList() {
       setEditingId(null);
     }
   };
+
+  const toShowOrhide = () => {
+    const allCompleted = todos.every((todo) => todo.completed);
+    setTodos(
+      todos.map((todo) => ({ ...todo, completed: !allCompleted, active: allCompleted }))
+    );
+  };
   return (
     <section className="todoapp">
       <header className="header">
@@ -123,24 +130,31 @@ export default function AppTodoList() {
           <strong>{todos.filter((todo) => !todo.completed).length}</strong>{" "}
           items left
         </span>
-            <button className="clear-completed" onClick={clearCompleted}>
-              Clear completed
-            </button>
+        {todos.some((todo) => todo.completed) && (
+          <button className="clear-completed" onClick={clearCompleted}>
+            Clear completed
+          </button>
+        )}
         <ul className="filters">
           <li>
-            <button onClick={getCompleted}>
+          <a
+              href="#/completed"
+              onClick={getCompleted}
+              className={filter === "completed" ? "selected" : ""}
+            >
               Completed
-            </button>
+            </a>
           </li>
           <li>
-            <button onClick={getAll}>
+            <a href="#/" onClick={getAll}
+            className={filter === "all" ? "selected" : ""}>
               All
-            </button>
+            </a>
           </li>
           <li>
-            <button onClick={getActive}>
+            <a  href="#/active" onClick={getActive}  className={filter === "active" ? "selected" : ""}>
               Active
-            </button>
+            </a>
           </li>
         </ul>
       </footer>
