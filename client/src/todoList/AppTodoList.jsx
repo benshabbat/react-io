@@ -36,7 +36,7 @@ export default function AppTodoList() {
     setFilter("completed");
   };
   const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") return todo.active;
+    if (filter === "active") return !todo.completed;
     if (filter === "completed") return todo.completed;
     return true;
   });
@@ -51,6 +51,14 @@ export default function AppTodoList() {
   const startEditing = (id) => {
     setEditingId(id);
   };
+
+  const handleEditKeyPress = (e, id) => {
+    if (e.key === "Enter") {
+      editTodo(id, e.target.value);
+    } else if (e.key === "Escape") {
+      setEditingId(null);
+    }
+  };
   const editTodo = (id, newTitle) => {
     setTodos(
       todos.map((todo) =>
@@ -58,13 +66,6 @@ export default function AppTodoList() {
       )
     );
     setEditingId(null);
-  };
-  const handleEditKeyPress = (e, id) => {
-    if (e.key === "Enter") {
-      editTodo(id, e.target.value);
-    } else if (e.key === "Escape") {
-      setEditingId(null);
-    }
   };
 
   const toShowOrhide = () => {
@@ -129,12 +130,14 @@ export default function AppTodoList() {
           <strong>{todos.filter((todo) => !todo.completed).length}</strong>{" "}
           items left
         </span>
-        {todos.some((todo) => todo.completed) && (
-          <button className="clear-completed" onClick={clearCompleted}>
-            Clear completed
-          </button>
-        )}
         <ul className="filters">
+          <li>
+            {todos.some((todo) => todo.completed) && (
+              <button className="clear-completed" onClick={clearCompleted}>
+                Clear completed
+              </button>
+            )}
+          </li>
           <li>
             <a
               href="#/"
