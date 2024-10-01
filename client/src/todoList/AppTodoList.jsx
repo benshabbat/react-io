@@ -34,7 +34,11 @@ export default function AppTodoList() {
   const getCompleted = () => {
     setFilter("completed");
   };
-
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "active") return todo.active;
+    if (filter === "completed") return todo.completed;
+    return true;
+  });
   
   const clearCompleted = () =>
     setTodos(todos.filter((todo) => !todo.completed));
@@ -78,8 +82,7 @@ export default function AppTodoList() {
       <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
-          {todos &&
-            todos?.map((todo) => (
+          {filteredTodos?.map((todo) => (
               <li
                 key={todo.id}
                 className={`${todo.completed ? "completed" : ""} ${
