@@ -23,9 +23,9 @@ export default function AppMole() {
   };
   const handleMouseDown = () => setIsActive(true);
   const handleMouseUp = () => setIsActive(false);
-
+   
   const handleHoleClick = (index) => {
-    if (holes[index] && holes[index].state === 'up') {
+    if (holes[index].state === 'up') {
       setScore(prevScore => prevScore + 10);
       setHoles(prevHoles => {
         const newHoles = [...prevHoles];
@@ -118,3 +118,7 @@ export default function AppMole() {
     </div>
   );
 }
+
+
+
+

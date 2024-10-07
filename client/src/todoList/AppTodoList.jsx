@@ -1,4 +1,5 @@
 import { useState } from "react";
+import HeaderToDO from "./HeaderToDO";
 
 export default function AppTodoList() {
   const [todos, setTodos] = useState([]);
@@ -6,15 +7,15 @@ export default function AppTodoList() {
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("all");
   const [show, setShow] = useState(true);
-  const addTodo = (e) => {
-    if (e.key === "Enter" && newTodo.trim() !== "") {
-      setTodos([
-        ...todos,
-        { id: Date.now(), title: newTodo, completed: false, active: true },
-      ]);
-      setNewTodo("");
-    }
-  };
+  // const addTodo = (e) => {
+  //   if (e.key === "Enter" && newTodo.trim() !== "") {
+  //     setTodos([
+  //       ...todos,
+  //       { id: Date.now(), title: newTodo, completed: false, active: true },
+  //     ]);
+  //     setNewTodo("");
+  //   }
+  // };
 
   const toggleTodo = (id) => {
     setTodos(
@@ -73,7 +74,7 @@ export default function AppTodoList() {
   };
   return (
     <section className="todoapp">
-      <header className="header">
+      {/* <header className="header">
         <h1>todos</h1>
         <input
           className="new-todo"
@@ -83,8 +84,8 @@ export default function AppTodoList() {
           onChange={(e) => setNewTodo(e.target.value)}
           onKeyPress={addTodo}
         />
-      </header>
-
+      </header> */}
+      <HeaderToDO setNewTodo={setNewTodo} newTodo={newTodo} setTodos={setTodos}todos={todos}/>
       <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
