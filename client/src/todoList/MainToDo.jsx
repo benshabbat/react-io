@@ -1,3 +1,7 @@
+//TODO: to check with moved props from main
+// after it to check what from functions and use state to move here.
+
+
 export default function MainToDo() {
 
   return (
