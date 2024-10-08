@@ -26,32 +26,6 @@ export default function AppMole() {
   const handleMouseDown = () => setIsActive(true);
   const handleMouseUp = () => setIsActive(false);
    
-  const handleHoleClick = (index) => {
-    if (holes[index].state === 'up') {
-      setScore(prevScore => prevScore + 10);
-      setHoles(prevHoles => {
-        const newHoles = [...prevHoles];
-        clearTimeout(newHoles[index].timer);
-        const hitTimer = setTimeout(() => {
-          setHoles(currentHoles => {
-            const updatedHoles = [...currentHoles];
-            const sadTimer = setTimeout(() => {
-              setHoles(sadHoles => {
-                const finalHoles = [...sadHoles];
-                finalHoles[index] = null;
-                return finalHoles;
-              });
-            }, 1500);
-            updatedHoles[index] = { state: 'sad', timer: sadTimer };
-            return updatedHoles;
-          });
-        }, 1500);
-        newHoles[index] = { state: 'hit', timer: hitTimer };
-        return newHoles;
-      });
-    }
-  };
- 
   const startGame = () => {
     setStarted(true);
     setTime(30);
@@ -103,7 +77,7 @@ export default function AppMole() {
       <MouseHammer cursorPosition={cursorPosition} isActive={isActive} />
       <HudMole time={time} score={score}/>
       {!started && <StartGame setStarted={startGame} />}
-      <LawnMole holes={holes} handleHoleClick={handleHoleClick}/>
+      <LawnMole holes={holes} setHoles={setHoles} setScore={setScore}/>
     </div>
   );
 }
