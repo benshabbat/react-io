@@ -31,86 +31,82 @@ export default function AppMole() {
   const handleMouseDown = () => setIsActive(true);
   const handleMouseUp = () => setIsActive(false);
 
+  // const spawnMole = () => {
+  //   const randId = Math.floor(Math.random() * NUMBER_OF_HOLES);
+  //   setHoles((prevHoles) => {
+  //     //if mole exists into hole
+  //     if (prevHoles[randId]) return prevHoles;
 
-  const spawnMole = () => {
-    const randId = Math.floor(Math.random() * NUMBER_OF_HOLES);
-    setHoles((prevHoles) => {
-      //if mole exists into hole
-      if (prevHoles[randId]) return prevHoles;
+  //     const upTimer = setTimeout(() => hideMole(randId), MOLE_SHOW_DURATION);
+  //     prevHoles[randId] = { state: "up", timer: upTimer };
+  //     return prevHoles;
+  //   });
+  // };
 
-      const upTimer = setTimeout(() => hideMole(randId), MOLE_SHOW_DURATION);
-      prevHoles[randId] = { state: "up", timer: upTimer };
-      return prevHoles;
-    });
-  };
+  // const startMoleSpawner = () => {
+  //   moleTimerRef.current = setInterval(spawnMole, MOLE_SPAWN_INTERVAL);
+  // };
 
-  const startMoleSpawner = () => {
-    moleTimerRef.current = setInterval(spawnMole, MOLE_SPAWN_INTERVAL);
-  };
+  // const hideMole = (holeIndex) => {
+  //   setHoles((currentHoles) => {
+  //     if (currentHoles[holeIndex]?.state === "up") {
+  //       currentHoles[holeIndex] = null;
+  //     }
+  //     return currentHoles;
+  //   });
+  // };
 
+  // const startGame = () => {
+  //   clearAllTimers();
 
-  const hideMole = (holeIndex) => {
-    setHoles((currentHoles) => {
-      if (currentHoles[holeIndex]?.state === "up") {
-        currentHoles[holeIndex] = null;
-      }
-      return currentHoles;
-    });
-  };
+  //   resetGame();
 
+  //   setStarted(true);
 
+  //   startGameTimer();
 
-  const startGame = () => {
-    clearAllTimers();
+  //   startMoleSpawner();
+  // };
 
-    resetGame();
+  // const resetGame = () => {
+  //   setStarted(false);
+  //   setTime(GAME_DURATION);
+  //   setScore(0);
+  //   setHoles(Array(NUMBER_OF_HOLES).fill(null));
+  // };
 
-    setStarted(true);
+  // const startGameTimer = () => {
+  //   timerRef.current = setInterval(() => {
+  //     setTime((prevTime) => {
+  //       if (prevTime <= 1) {
+  //         endGame();
+  //         return 0;
+  //       }
+  //       return prevTime - 1;
+  //     });
+  //   }, 1000);
+  // };
+  // const endGame = () => {
+  //   clearAllTimers();
+  //   setStarted(false);
+  // };
 
-    startGameTimer();
+  // const clearAllTimers = () => {
+  //   if (timerRef.current) {
+  //     clearInterval(timerRef.current);
+  //     timerRef.current = null;
+  //   }
+  //   if (moleTimerRef.current) {
+  //     clearInterval(moleTimerRef.current);
+  //     moleTimerRef.current = null;
+  //   }
 
-    startMoleSpawner();
-  };
-
-  const resetGame = () => {
-    setStarted(false);
-    setTime(GAME_DURATION);
-    setScore(0);
-    setHoles(Array(NUMBER_OF_HOLES).fill(null));
-  };
-
-  const startGameTimer = () => {
-    timerRef.current = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime <= 1) {
-          endGame();
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-  };
-  const endGame = () => {
-    clearAllTimers();
-    setStarted(false);
-  };
-
-  const clearAllTimers = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
-    }
-    if (moleTimerRef.current) {
-      clearInterval(moleTimerRef.current);
-      moleTimerRef.current = null;
-    }
-
-    holes.forEach((hole) => {
-      if (hole?.timer) {
-        clearTimeout(hole.timer);
-      }
-    });
-  };
+  //   holes.forEach((hole) => {
+  //     if (hole?.timer) {
+  //       clearTimeout(hole.timer);
+  //     }
+  //   });
+  // };
   return (
     <div
       id="game"
@@ -121,7 +117,17 @@ export default function AppMole() {
       <HeaderMole />
       <MouseHammer cursorPosition={cursorPosition} isActive={isActive} />
       <HudMole time={time} score={score} />
-      {!started && <StartGame startGame={startGame} />}
+      {!started && (
+        <StartGame
+          setStarted={setStarted}
+          moleTimerRef={moleTimerRef}
+          timerRef={timerRef}
+          holes={holes}
+          setHoles={setHoles}
+          setScore={setScore}
+          setTime={setTime}
+        />
+      )}
       <LawnMole holes={holes} setHoles={setHoles} setScore={setScore} />
     </div>
   );

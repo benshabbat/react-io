@@ -5,10 +5,10 @@ export default function StartGame(props) {
   const NUMBER_OF_HOLES = 5;
 
   const startMoleSpawner = () => {
-    moleTimerRef.current = setInterval(spawnMole, MOLE_SPAWN_INTERVAL);
+    props.moleTimerRef.current = setInterval(spawnMole, MOLE_SPAWN_INTERVAL);
   };
   const hideMole = (holeIndex) => {
-    setHoles((currentHoles) => {
+    props.setHoles((currentHoles) => {
       if (currentHoles[holeIndex]?.state === "up") {
         currentHoles[holeIndex] = null;
       }
@@ -17,7 +17,7 @@ export default function StartGame(props) {
   };
   const spawnMole = () => {
     const randId = Math.floor(Math.random() * NUMBER_OF_HOLES);
-    setHoles((prevHoles) => {
+    props.setHoles((prevHoles) => {
       //if mole exists into hole
       if (prevHoles[randId]) return prevHoles;
 
@@ -32,21 +32,21 @@ export default function StartGame(props) {
 
     resetGame();
 
-    setStarted(true);
+    props.setStarted(true);
 
     startGameTimer();
 
     startMoleSpawner();
   };
   const resetGame = () => {
-    setStarted(false);
-    setTime(GAME_DURATION);
-    setScore(0);
-    setHoles(Array(NUMBER_OF_HOLES).fill(null));
+    props.setStarted(false);
+    props.setTime(GAME_DURATION);
+    props.setScore(0);
+    props.setHoles(Array(NUMBER_OF_HOLES).fill(null));
   };
   const startGameTimer = () => {
-    timerRef.current = setInterval(() => {
-      setTime((prevTime) => {
+    props.timerRef.current = setInterval(() => {
+      props.setTime((prevTime) => {
         if (prevTime <= 1) {
           endGame();
           return 0;
@@ -57,19 +57,19 @@ export default function StartGame(props) {
   };
   const endGame = () => {
     clearAllTimers();
-    setStarted(false);
+    props.setStarted(false);
   };
   const clearAllTimers = () => {
-    if (timerRef.current) {
-      clearInterval(timerRef.current);
-      timerRef.current = null;
+    if (props.timerRef.current) {
+      clearInterval(props.timerRef.current);
+      props.timerRef.current = null;
     }
-    if (moleTimerRef.current) {
-      clearInterval(moleTimerRef.current);
-      moleTimerRef.current = null;
+    if (props.moleTimerRef.current) {
+      clearInterval(props.moleTimerRef.current);
+      props.moleTimerRef.current = null;
     }
 
-    holes.forEach((hole) => {
+    props.holes.forEach((hole) => {
       if (hole?.timer) {
         clearTimeout(hole.timer);
       }
