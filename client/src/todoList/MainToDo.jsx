@@ -44,6 +44,12 @@ export default function MainToDo(props) {
     );
     setEditingId(null);
   };
+
+
+  const deleteTodo = (id) => {
+    props.setTodos(props.todos.filter((todo) => todo.id !== id));
+  };
+
   return (
     <section className="main">
       <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
@@ -68,7 +74,7 @@ export default function MainToDo(props) {
                 </label>
                 <button
                   className="destroy"
-                  onClick={() => props.deleteTodo(todo.id)}
+                  onClick={() => deleteTodo(todo.id)}
                 />
               </div>
               <input

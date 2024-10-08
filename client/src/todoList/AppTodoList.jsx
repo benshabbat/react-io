@@ -4,7 +4,6 @@ import MainToDo from "./MainToDo";
 
 export default function AppTodoList() {
   const [todos, setTodos] = useState([]);
-  
   const [filter, setFilter] = useState("all");
 
   const getAll = () => {
@@ -22,55 +21,13 @@ export default function AppTodoList() {
   const clearCompleted = () =>
     setTodos(todos.filter((todo) => !todo.completed));
 
-  const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-  };
 
 
 
   return (
     <section className="todoapp">
       <HeaderToDO setTodos={setTodos} todos={todos}/>
-      <MainToDo todos={todos} filter={filter}  setTodos={setTodos}  deleteTodo={deleteTodo} />
-      {/* <section className="main">
-        <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
-        <ul className="todo-list">
-          {show &&
-            filteredTodos?.map((todo) => (
-              <li
-                key={todo.id}
-                className={`${todo.completed ? "completed" : ""} ${
-                  editingId === todo.id ? "editing" : ""
-                }`}
-              >
-                <div className="view">
-                  <input
-                    className="toggle"
-                    type="checkbox"
-                    checked={todo.completed}
-                    onChange={() => toggleTodo(todo.id)}
-                  />
-                  <label onDoubleClick={() => startEditing(todo.id)}>
-                    {todo.title}
-                  </label>
-                  <button
-                    className="destroy"
-                    onClick={() => deleteTodo(todo.id)}
-                  />
-                </div>
-                {editingId === todo.id && (
-                  <input
-                    className="edit"
-                    defaultValue={todo.title}
-                    onBlur={(e) => editTodo(todo.id, e.target.value)}
-                    onKeyDown={(e) => handleEditKeyPress(e, todo.id)}
-                    autoFocus
-                  />
-                )}
-              </li>
-            ))}
-        </ul>
-      </section> */}
+      <MainToDo todos={todos} filter={filter}  setTodos={setTodos} />
 
       <footer className="footer">
         <span className="todo-count">
