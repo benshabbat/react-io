@@ -19,8 +19,6 @@ export default function MainToDo(props) {
   };
  
 
-
-
   const startEditing = (id) => {
     setEditingId(id);
   };

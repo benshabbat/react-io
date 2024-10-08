@@ -2,6 +2,7 @@ import { useState } from "react";
 import HeaderMole from "./HeaderMole";
 import StartGame from "./StartGame";
 import MouseHammer from "./MouseHammer";
+import HudMole from "./HudMole";
 
 export default function AppMole() {
   const [score, setScore] = useState(0);
@@ -99,11 +100,7 @@ export default function AppMole() {
     >
       <HeaderMole />
       <MouseHammer cursorPosition={cursorPosition} isActive={isActive} />
-      <div id="hud">
-        <div id="time">{time}</div>
-        <div id="score">{score}</div>
-      </div>
-
+      <HudMole time={time} score={score}/>
       {!started && <StartGame setStarted={startGame} />}
 
       <div id="lawn">
