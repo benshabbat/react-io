@@ -1,14 +1,19 @@
 //TODO: to check with moved props from main
 // after it to check what from functions and use state to move here.
 
-
+import { useState } from "react";
 export default function MainToDo(props) {
+  const [show, setShow] = useState(true);
+
+  const toShowOrhide = () => {
+    setShow(!show);
+  };
 
   return (
 <section className="main">
-        <input className="toggle-all" type="checkbox" onClick={props.toShowOrhide} />
+        <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
-          {props.show &&
+          {show &&
             props.filteredTodos?.map((todo) => (
               <li
                 key={todo.id}

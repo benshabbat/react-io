@@ -6,8 +6,6 @@ export default function AppTodoList() {
   const [todos, setTodos] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [filter, setFilter] = useState("all");
-  const [show, setShow] = useState(true);
-
 
   const toggleTodo = (id) => {
     setTodos(
@@ -61,13 +59,10 @@ export default function AppTodoList() {
     setEditingId(null);
   };
 
-  const toShowOrhide = () => {
-    setShow(!show);
-  };
   return (
     <section className="todoapp">
       <HeaderToDO setTodos={setTodos} todos={todos}/>
-      <MainToDo toShowOrhide={toShowOrhide} show={show} filteredTodos={filteredTodos} editingId={editingId} toggleTodo={toggleTodo} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
+      <MainToDo  filteredTodos={filteredTodos} editingId={editingId} toggleTodo={toggleTodo} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
       {/* <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
