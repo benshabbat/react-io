@@ -1,5 +1,5 @@
 export default function LawnMole(props) {
-  const HIDE_DELAY = 1500;
+  const HIDE_DELAY = 500;
 
   const updateHoleState = (index, state, delay = 0) => {
     return new Promise((resolve) => {
