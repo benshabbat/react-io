@@ -7,11 +7,6 @@ export default function AppTodoList() {
   const [todos, setTodos] = useState([]);
   const [filter, setFilter] = useState("all");
 
- 
- 
-
-
-
   return (
     <section className="todoapp">
       <HeaderToDO setTodos={setTodos} todos={todos}/>
