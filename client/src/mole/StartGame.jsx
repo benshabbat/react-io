@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 export default function StartGame(props) {
   const GAME_DURATION = 30;
   const MOLE_SPAWN_INTERVAL = 3000;
