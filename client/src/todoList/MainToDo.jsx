@@ -1,5 +1,3 @@
-//TODO: to check with moved props from main
-// after it to check what from functions and use state to move here.
 
 import { useState } from "react";
 export default function MainToDo(props) {
