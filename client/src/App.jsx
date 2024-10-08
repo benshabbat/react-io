@@ -10,12 +10,14 @@
 
 import "./mole/mole.css"
 import AppMole from "./mole/AppMole";
+// import Store from "./mole/Store";
 function App() {
   // return createElement(Fragment, null, createElement(Hedaer), createElement(Form));
 
 
   // return <AppTodoList/>
   return <AppMole/>
+  // return <Store/>
 }
 
 export default App;

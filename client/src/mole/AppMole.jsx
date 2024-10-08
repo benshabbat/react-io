@@ -8,7 +8,7 @@ import LawnMole from "./LawnMole";
 export default function AppMole() {
   const GAME_DURATION = 30;
   const NUMBER_OF_HOLES = 5;
-
+  
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(GAME_DURATION);
   const [started, setStarted] = useState(false);
@@ -28,9 +28,10 @@ export default function AppMole() {
   const handleMouseDown = () => setIsActive(true);
   const handleMouseUp = () => setIsActive(false);
 
+  
   return (
     <div
-      id="game"
+    id="game"
       onMouseMove={handleMouseMove}
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
