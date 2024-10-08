@@ -47,7 +47,7 @@ export default function AppMole() {
     moleTimerRef.current = setInterval(() => {
       setHoles(prevHoles => {
         const newHoles = [...prevHoles];
-        const emptyHoles = newHoles.map((hole, index) => ({ index, hole })).filter(({ hole }) => hole === null);
+        const emptyHoles = prevHoles.map((hole, index) => ({ index, hole })).filter(({ hole }) => hole === null);
         if (emptyHoles.length > 0) {
           const { index } = emptyHoles[Math.floor(Math.random() * emptyHoles.length)];
           const upTimer = setTimeout(() => {
@@ -76,7 +76,7 @@ export default function AppMole() {
       <HeaderMole />
       <MouseHammer cursorPosition={cursorPosition} isActive={isActive} />
       <HudMole time={time} score={score}/>
-      {!started && <StartGame setStarted={startGame} />}
+      {!started && <StartGame startGame={startGame} />}
       <LawnMole holes={holes} setHoles={setHoles} setScore={setScore}/>
     </div>
   );
