@@ -7,8 +7,6 @@ import LawnMole from "./LawnMole";
 
 export default function AppMole() {
   const GAME_DURATION = 30;
-  const MOLE_SPAWN_INTERVAL = 3000;
-  const MOLE_SHOW_DURATION = 2000;
   const NUMBER_OF_HOLES = 5;
 
   const [score, setScore] = useState(0);
@@ -19,8 +17,7 @@ export default function AppMole() {
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isActive, setIsActive] = useState(false);
 
-  const timerRef = useState({ current: null })[0];
-  const moleTimerRef = useState({ current: null })[0];
+
 
   const handleMouseMove = (event) => {
     const rect = event.currentTarget.getBoundingClientRect();
@@ -44,8 +41,6 @@ export default function AppMole() {
       {!started && (
         <StartGame
           setStarted={setStarted}
-          moleTimerRef={moleTimerRef}
-          timerRef={timerRef}
           holes={holes}
           setHoles={setHoles}
           setScore={setScore}

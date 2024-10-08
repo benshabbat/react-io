@@ -4,8 +4,12 @@ export default function StartGame(props) {
   const MOLE_SHOW_DURATION = 2000;
   const NUMBER_OF_HOLES = 5;
 
+  
+  const timerRef = useState({ current: null })[0];
+  const moleTimerRef = useState({ current: null })[0];
+
   const startMoleSpawner = () => {
-    props.moleTimerRef.current = setInterval(spawnMole, MOLE_SPAWN_INTERVAL);
+    moleTimerRef.current = setInterval(spawnMole, MOLE_SPAWN_INTERVAL);
   };
   const hideMole = (holeIndex) => {
     props.setHoles((currentHoles) => {
@@ -45,7 +49,7 @@ export default function StartGame(props) {
     props.setHoles(Array(NUMBER_OF_HOLES).fill(null));
   };
   const startGameTimer = () => {
-    props.timerRef.current = setInterval(() => {
+    timerRef.current = setInterval(() => {
       props.setTime((prevTime) => {
         if (prevTime <= 1) {
           endGame();
@@ -60,13 +64,13 @@ export default function StartGame(props) {
     props.setStarted(false);
   };
   const clearAllTimers = () => {
-    if (props.timerRef.current) {
-      clearInterval(props.timerRef.current);
-      props.timerRef.current = null;
+    if (timerRef.current) {
+      clearInterval(timerRef.current);
+      timerRef.current = null;
     }
-    if (props.moleTimerRef.current) {
-      clearInterval(props.moleTimerRef.current);
-      props.moleTimerRef.current = null;
+    if (moleTimerRef.current) {
+      clearInterval(moleTimerRef.current);
+      moleTimerRef.current = null;
     }
 
     props.holes.forEach((hole) => {
