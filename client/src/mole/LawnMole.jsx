@@ -1,6 +1,6 @@
 export default function LawnMole(props) {
   const handleHoleClick = (index) => {
-    if (props.holes[index].state === "up") {
+    if (props.holes[index] && props.holes[index].state === "up") {
       props.setScore((prevScore) => prevScore + 10);
       props.setHoles((prevHoles) => {
         const newHoles = [...prevHoles];

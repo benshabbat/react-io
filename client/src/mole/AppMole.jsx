@@ -9,7 +9,7 @@ export default function AppMole() {
   const [score, setScore] = useState(0);
   const [time, setTime] = useState(30);
   const [started, setStarted] = useState(false);
-  const [holes, setHoles] = useState(Array(5).fill(null));
+  const [holes, setHoles] = useState(new Array(5).fill(null));
 
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
   const [isActive, setIsActive] = useState(false);
@@ -45,22 +45,19 @@ export default function AppMole() {
     }, 1000);
 
     moleTimerRef.current = setInterval(() => {
+      const randId = Math.floor(Math.random() * holes.length);
       setHoles(prevHoles => {
         const newHoles = [...prevHoles];
-        const emptyHoles = prevHoles.map((hole, index) => ({ index, hole })).filter(({ hole }) => hole === null);
-        if (emptyHoles.length > 0) {
-          const { index } = emptyHoles[Math.floor(Math.random() * emptyHoles.length)];
-          const upTimer = setTimeout(() => {
-            setHoles(currentHoles => {
-              const updatedHoles = [...currentHoles];
-              if (updatedHoles[index] && updatedHoles[index].state === 'up') {
-                updatedHoles[index] = null; // החפרפרת פשוט נעלמת אם לא פגעו בה
+        const upTimer = setTimeout(() => {
+          setHoles(currentHoles => {
+            const updatedHoles = [...currentHoles];
+            if (updatedHoles[randId] && updatedHoles[randId].state === 'up') {
+                updatedHoles[randId] = null; // החפרפרת פשוט נעלמת אם לא פגעו בה
               }
               return updatedHoles;
             });
           }, 2000); // החפרפרת נשארת למעלה 2 שניות
-          newHoles[index] = { state: 'up', timer: upTimer };
-        }
+        newHoles[randId] = { state: 'up', timer: upTimer }; 
         return newHoles;
       });
     }, 3000);
