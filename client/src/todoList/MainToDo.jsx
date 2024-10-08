@@ -8,13 +8,17 @@ export default function MainToDo(props) {
   const toShowOrhide = () => {
     setShow(!show);
   };
-
+  const filteredTodos = props.todos.filter((todo) => {
+    if (props.filter === "active") return !todo.completed;
+    if (props.filter === "completed") return todo.completed;
+    return true;
+  });
   return (
 <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
           {show &&
-            props.filteredTodos?.map((todo) => (
+            filteredTodos?.map((todo) => (
               <li
                 key={todo.id}
                 className={`${todo.completed ? "completed" : ""} ${

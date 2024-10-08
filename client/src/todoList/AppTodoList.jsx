@@ -26,11 +26,7 @@ export default function AppTodoList() {
   const getCompleted = () => {
     setFilter("completed");
   };
-  const filteredTodos = todos.filter((todo) => {
-    if (filter === "active") return !todo.completed;
-    if (filter === "completed") return todo.completed;
-    return true;
-  });
+ 
 
   const clearCompleted = () =>
     setTodos(todos.filter((todo) => !todo.completed));
@@ -62,7 +58,7 @@ export default function AppTodoList() {
   return (
     <section className="todoapp">
       <HeaderToDO setTodos={setTodos} todos={todos}/>
-      <MainToDo  filteredTodos={filteredTodos} editingId={editingId} toggleTodo={toggleTodo} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
+      <MainToDo todos={todos} filter={filter} editingId={editingId} toggleTodo={toggleTodo} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
       {/* <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
