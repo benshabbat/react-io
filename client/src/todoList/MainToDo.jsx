@@ -2,18 +2,18 @@
 // after it to check what from functions and use state to move here.
 
 
-export default function MainToDo() {
+export default function MainToDo(props) {
 
   return (
 <section className="main">
-        <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
+        <input className="toggle-all" type="checkbox" onClick={props.toShowOrhide} />
         <ul className="todo-list">
-          {show &&
-            filteredTodos?.map((todo) => (
+          {props.show &&
+            props.filteredTodos?.map((todo) => (
               <li
                 key={todo.id}
                 className={`${todo.completed ? "completed" : ""} ${
-                  editingId === todo.id ? "editing" : ""
+                  props.editingId === todo.id ? "editing" : ""
                 }`}
               >
                 <div className="view">
@@ -21,22 +21,22 @@ export default function MainToDo() {
                     className="toggle"
                     type="checkbox"
                     checked={todo.completed}
-                    onChange={() => toggleTodo(todo.id)}
+                    onChange={() => props.toggleTodo(todo.id)}
                   />
-                  <label onDoubleClick={() => startEditing(todo.id)}>
+                  <label onDoubleClick={() => props.startEditing(todo.id)}>
                     {todo.title}
                   </label>
                   <button
                     className="destroy"
-                    onClick={() => deleteTodo(todo.id)}
+                    onClick={() => props.deleteTodo(todo.id)}
                   />
                 </div>
-                {editingId === todo.id && (
+                {props.editingId === todo.id && (
                   <input
                     className="edit"
                     defaultValue={todo.title}
-                    onBlur={(e) => editTodo(todo.id, e.target.value)}
-                    onKeyDown={(e) => handleEditKeyPress(e, todo.id)}
+                    onBlur={(e) => props.editTodo(todo.id, e.target.value)}
+                    onKeyDown={(e) => props.handleEditKeyPress(e, todo.id)}
                     autoFocus
                   />
                 )}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import HeaderToDO from "./HeaderToDO";
+import MainToDo from "./MainToDo";
 
 export default function AppTodoList() {
   const [todos, setTodos] = useState([]);
@@ -66,7 +67,8 @@ export default function AppTodoList() {
   return (
     <section className="todoapp">
       <HeaderToDO setTodos={setTodos} todos={todos}/>
-      <section className="main">
+      <MainToDo show={show} filteredTodos={filteredTodos} editingId={editingId} toggleTodo={toggleTodo} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
+      {/* <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
           {show &&
@@ -104,7 +106,7 @@ export default function AppTodoList() {
               </li>
             ))}
         </ul>
-      </section>
+      </section> */}
 
       <footer className="footer">
         <span className="todo-count">
