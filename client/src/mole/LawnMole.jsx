@@ -3,24 +3,21 @@ export default function LawnMole(props) {
     if (props.holes[index] && props.holes[index].state === "up") {
       props.setScore((prevScore) => prevScore + 10);
       props.setHoles((prevHoles) => {
-        const newHoles = [...prevHoles];
-        clearTimeout(newHoles[index].timer);
+        clearTimeout(prevHoles[index].timer);
         const hitTimer = setTimeout(() => {
           props.setHoles((currentHoles) => {
-            const updatedHoles = [...currentHoles];
             const sadTimer = setTimeout(() => {
               props.setHoles((sadHoles) => {
-                const finalHoles = [...sadHoles];
-                finalHoles[index] = null;
-                return finalHoles;
+                sadHoles[index] = null;
+                return sadHoles;
               });
             }, 1500);
-            updatedHoles[index] = { state: "sad", timer: sadTimer };
-            return updatedHoles;
+            currentHoles[index] = { state: "sad", timer: sadTimer };
+            return currentHoles;
           });
         }, 1500);
-        newHoles[index] = { state: "hit", timer: hitTimer };
-        return newHoles;
+        prevHoles[index] = { state: "hit", timer: hitTimer };
+        return prevHoles;
       });
     }
   };
