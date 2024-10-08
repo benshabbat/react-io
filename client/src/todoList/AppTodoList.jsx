@@ -4,18 +4,9 @@ import MainToDo from "./MainToDo";
 
 export default function AppTodoList() {
   const [todos, setTodos] = useState([]);
-  const [editingId, setEditingId] = useState(null);
+  
   const [filter, setFilter] = useState("all");
 
-  const toggleTodo = (id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id
-          ? { ...todo, completed: !todo.completed, active: !todo.active }
-          : todo
-      )
-    );
-  };
   const getAll = () => {
     setFilter("all");
   };
@@ -35,30 +26,12 @@ export default function AppTodoList() {
     setTodos(todos.filter((todo) => todo.id !== id));
   };
 
-  const startEditing = (id) => {
-    setEditingId(id);
-  };
 
-  const handleEditKeyPress = (e, id) => {
-    if (e.key === "Enter") {
-      editTodo(id, e.target.value);
-    } else if (e.key === "Escape") {
-      setEditingId(null);
-    }
-  };
-  const editTodo = (id, newTitle) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, title: newTitle } : todo
-      )
-    );
-    setEditingId(null);
-  };
 
   return (
     <section className="todoapp">
       <HeaderToDO setTodos={setTodos} todos={todos}/>
-      <MainToDo todos={todos} filter={filter} editingId={editingId} setTodos={setTodos} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
+      <MainToDo todos={todos} filter={filter}  setTodos={setTodos}  deleteTodo={deleteTodo} />
       {/* <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">

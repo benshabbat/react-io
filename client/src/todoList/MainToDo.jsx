@@ -4,6 +4,7 @@
 import { useState } from "react";
 export default function MainToDo(props) {
   const [show, setShow] = useState(true);
+  const [editingId, setEditingId] = useState(null);
 
   const toggleTodo = (id) => {
     props.setTodos(
@@ -23,6 +24,27 @@ export default function MainToDo(props) {
     if (props.filter === "completed") return todo.completed;
     return true;
   });
+
+
+  const startEditing = (id) => {
+    setEditingId(id);
+  };
+
+  const handleEditKeyPress = (e, id) => {
+    if (e.key === "Enter") {
+      editTodo(id, e.target.value);
+    } else if (e.key === "Escape") {
+      setEditingId(null);
+    }
+  };
+  const editTodo = (id, newTitle) => {
+    props.setTodos(
+      props.todos.map((todo) =>
+        todo.id === id ? { ...todo, title: newTitle } : todo
+      )
+    );
+    setEditingId(null);
+  };
   return (
 <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
@@ -32,7 +54,7 @@ export default function MainToDo(props) {
               <li
                 key={todo.id}
                 className={`${todo.completed ? "completed" : ""} ${
-                  props.editingId === todo.id ? "editing" : ""
+                  editingId === todo.id ? "editing" : ""
                 }`}
               >
                 <div className="view">
@@ -42,7 +64,7 @@ export default function MainToDo(props) {
                     checked={todo.completed}
                     onChange={() => toggleTodo(todo.id)}
                   />
-                  <label onDoubleClick={() => props.startEditing(todo.id)}>
+                  <label onDoubleClick={() => startEditing(todo.id)}>
                     {todo.title}
                   </label>
                   <button
@@ -50,12 +72,12 @@ export default function MainToDo(props) {
                     onClick={() => props.deleteTodo(todo.id)}
                   />
                 </div>
-                {props.editingId === todo.id && (
+                {editingId === todo.id && (
                   <input
                     className="edit"
                     defaultValue={todo.title}
-                    onBlur={(e) => props.editTodo(todo.id, e.target.value)}
-                    onKeyDown={(e) => props.handleEditKeyPress(e, todo.id)}
+                    onBlur={(e) => editTodo(todo.id, e.target.value)}
+                    onKeyDown={(e) => handleEditKeyPress(e, todo.id)}
                     autoFocus
                   />
                 )}
