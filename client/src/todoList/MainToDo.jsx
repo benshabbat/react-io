@@ -5,6 +5,16 @@ import { useState } from "react";
 export default function MainToDo(props) {
   const [show, setShow] = useState(true);
 
+  const toggleTodo = (id) => {
+    props.setTodos(
+      props.todos.map((todo) =>
+        todo.id === id
+          ? { ...todo, completed: !todo.completed, active: !todo.active }
+          : todo
+      )
+    );
+  };
+
   const toShowOrhide = () => {
     setShow(!show);
   };
@@ -30,7 +40,7 @@ export default function MainToDo(props) {
                     className="toggle"
                     type="checkbox"
                     checked={todo.completed}
-                    onChange={() => props.toggleTodo(todo.id)}
+                    onChange={() => toggleTodo(todo.id)}
                   />
                   <label onDoubleClick={() => props.startEditing(todo.id)}>
                     {todo.title}

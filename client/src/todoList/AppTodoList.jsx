@@ -58,7 +58,7 @@ export default function AppTodoList() {
   return (
     <section className="todoapp">
       <HeaderToDO setTodos={setTodos} todos={todos}/>
-      <MainToDo todos={todos} filter={filter} editingId={editingId} toggleTodo={toggleTodo} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
+      <MainToDo todos={todos} filter={filter} editingId={editingId} setTodos={setTodos} startEditing={startEditing} deleteTodo={deleteTodo} editTodo={editTodo} handleEditKeyPress={handleEditKeyPress}/>
       {/* <section className="main">
         <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
         <ul className="todo-list">
