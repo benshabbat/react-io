@@ -3,6 +3,7 @@ import HeaderMole from "./HeaderMole";
 import StartGame from "./StartGame";
 import MouseHammer from "./MouseHammer";
 import HudMole from "./HudMole";
+import LawnMole from "./LawnMole";
 
 export default function AppMole() {
   const [score, setScore] = useState(0);
@@ -102,16 +103,7 @@ export default function AppMole() {
       <MouseHammer cursorPosition={cursorPosition} isActive={isActive} />
       <HudMole time={time} score={score}/>
       {!started && <StartGame setStarted={startGame} />}
-
-      <div id="lawn">
-      {holes.map((hole, index) => (
-          <div 
-            key={index} 
-            className={`hole ${hole ? hole.state : ''}`}
-            onClick={() => handleHoleClick(index)}
-          ></div>
-        ))}
-      </div>
+      <LawnMole holes={holes} handleHoleClick={handleHoleClick}/>
     </div>
   );
 }
