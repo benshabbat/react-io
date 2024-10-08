@@ -32,20 +32,6 @@ export default function AppMole() {
   const handleMouseUp = () => setIsActive(false);
 
 
-
-  const startGameTimer = () => {
-    timerRef.current = setInterval(() => {
-      setTime((prevTime) => {
-        if (prevTime <= 1) {
-          endGame();
-          return 0;
-        }
-        return prevTime - 1;
-      });
-    }, 1000);
-  };
-
-
   const spawnMole = () => {
     const randId = Math.floor(Math.random() * NUMBER_OF_HOLES);
     setHoles((prevHoles) => {
@@ -92,10 +78,23 @@ export default function AppMole() {
     setScore(0);
     setHoles(Array(NUMBER_OF_HOLES).fill(null));
   };
+
+  const startGameTimer = () => {
+    timerRef.current = setInterval(() => {
+      setTime((prevTime) => {
+        if (prevTime <= 1) {
+          endGame();
+          return 0;
+        }
+        return prevTime - 1;
+      });
+    }, 1000);
+  };
   const endGame = () => {
     clearAllTimers();
     setStarted(false);
   };
+
   const clearAllTimers = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
