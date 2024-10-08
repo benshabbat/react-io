@@ -1,6 +1,3 @@
-//TODO: to check with moved props from apptodo
-// after it to check what from functions and use state to move here.
-
 export default function FooterToDo(props) {
   const getAll = () => {
     props.setFilter("all");
@@ -14,8 +11,6 @@ export default function FooterToDo(props) {
   };
   const clearCompleted = () =>
     props.setTodos(props.todos.filter((todo) => !todo.completed));
-
-
 
   return (
     <footer className="footer">
