@@ -14,7 +14,12 @@ const useStore = () => {
         todos: [...prevState.todos, newTitle]
       }));
     },
-    editTodo: (newTitle) => {
+    editTodo: (it,newTitle) => {
+      setState(prevState => ({
+        todos: [...prevState.todos, newTitle]
+      }));
+    },
+    deletTodo: (id) => {
       setState(prevState => ({
         todos: [...prevState.todos, newTitle]
       }));
