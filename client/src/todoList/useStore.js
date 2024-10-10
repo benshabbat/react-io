@@ -19,10 +19,13 @@ const useStore = () => {
         todos: [...prevState.todos, newTitle]
       }));
     },
-    deletTodo: (id) => {
+    deleteTodo: (id) => {
       setState(prevState => ({
         todos: [...prevState.todos, newTitle]
       }));
+    },
+    getAacitiveTodo: () => {
+      
     },
   };
 
