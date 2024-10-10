@@ -24,7 +24,11 @@ const useStore = () => {
         todos: [...prevState.todos, newTitle]
       }));
     },
-    getAacitiveTodo: () => {
+
+    getStatusTodos: (status) => {
+      
+    },
+    getAacitiveTodos: () => {
       
     },
   };
