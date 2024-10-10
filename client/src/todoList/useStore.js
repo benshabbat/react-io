@@ -11,18 +11,14 @@ const useStore = () => {
   const actions = {
     addTodo: (newTitle) => {
       setState(prevState => ({
-        
         todos: [...prevState.todos, newTitle]
       }));
     },
-
-    // פונקציה כללית לעדכון המצב
-    updateState: (updates) => {
+    editTodo: (newTitle) => {
       setState(prevState => ({
-        ...prevState,
-        ...updates
+        todos: [...prevState.todos, newTitle]
       }));
-    }
+    },
   };
 
   return {
