@@ -21,7 +21,7 @@ const useStore = () => {
     },
     deleteTodo: (id) => {
       setState(prevState => ({
-        todos: [...prevState.todos, newTitle]
+        todos: prevState.todos.filter((todo) => todo.id !== id)
       }));
     },
 
