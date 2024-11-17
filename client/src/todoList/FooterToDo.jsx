@@ -1,16 +1,9 @@
-export default function FooterToDo(props) {
-  const getAll = () => {
-    props.setFilter("all");
-  };
-  const getActive = () => {
-    props.setFilter("active");
-  };
+import { useFilterTodo } from "./useFilterTodo";
+import { useTodoList } from "./useTodoList";
 
-  const getCompleted = () => {
-    props.setFilter("completed");
-  };
-  const clearCompleted = () =>
-    props.setTodos(props.todos.filter((todo) => !todo.completed));
+export default function FooterToDo(props) {
+  const {getAll, getCompleted, getActive} = useFilterTodo(props.setFilter)
+  const {clearCompleted} =useTodoList(props.setTodos,props.todos)
 
   return (
     <footer className="footer">

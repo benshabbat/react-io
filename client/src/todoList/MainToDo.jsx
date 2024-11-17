@@ -1,52 +1,22 @@
-import { useState } from "react";
-export default function MainToDo(props) {
-  const [show, setShow] = useState(true);
-  const [editingId, setEditingId] = useState(null);
-
-  const toggleTodo = (id) => {
-    props.setTodos(
-      props.todos.map((todo) =>
-        todo.id === id
-          ? { ...todo, completed: !todo.completed, active: !todo.active }
-          : todo
-      )
-    );
-  };
-
-  const toShowOrhide = () => {
-    setShow(!show);
-  };
-
-  const startEditing = (id) => {
-    setEditingId(id);
-  };
-
-  const handleEditKeyPress = (e, id) => {
-    if (e.key === "Enter") {
-      editTodo(id, e.target.value);
-    } else if (e.key === "Escape") {
-      setEditingId(null);
-    }
-  };
-  const editTodo = (id, newTitle) => {
-    props.setTodos(
-      props.todos.map((todo) =>
-        todo.id === id ? { ...todo, title: newTitle } : todo
-      )
-    );
-    setEditingId(null);
-  };
-
-  const deleteTodo = (id) => {
-    props.setTodos(props.todos.filter((todo) => todo.id !== id));
-  };
+import { useTodoList } from "./useTodoList";
+export default function MainToDo({ filteredTodos, setTodos, todos }) {
+  const {
+    toShowOrhide,
+    show,
+    editingId,
+    toggleTodo,
+    startEditing,
+    deleteTodo,
+    editTodo,
+    handleEditKeyPress,
+  } = useTodoList(setTodos, todos);
 
   return (
     <section className="main">
       <input className="toggle-all" type="checkbox" onClick={toShowOrhide} />
       <ul className="todo-list">
         {show &&
-          props.filteredTodos.map((todo) => (
+          filteredTodos.map((todo) => (
             <li
               key={todo.id}
               className={`${todo.completed ? "completed" : ""} ${
