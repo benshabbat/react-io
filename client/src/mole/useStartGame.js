@@ -100,5 +100,7 @@ export function useStartGame(){
         startMoleSpawner();
       };
 
+      
+
       return {startGame,score,time, started,setScore,holes,setHoles}
 }

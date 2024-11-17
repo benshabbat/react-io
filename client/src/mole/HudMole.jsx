@@ -1,4 +1,5 @@
 export default function HudMole(props) {
+  
   return (
     <div id="hud">
     <div id="time">{props.time}</div>
