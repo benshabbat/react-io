@@ -1,11 +1,4 @@
-import { useStartGame } from "./useStartGame";
-
-export default function StartGame() {
-
-  const {startGame} =  useStartGame()
-
-
-
+export default function StartGame({ startGame }) {
   return (
     <div id="lawn">
       <div onClick={startGame} className="hole start"></div>
