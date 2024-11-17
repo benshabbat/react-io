@@ -21,6 +21,8 @@ export default function StartGame(props) {
       return currentHoles;
     });
   };
+
+  
   const spawnMole = () => {
     const randId = Math.floor(Math.random() * NUMBER_OF_HOLES);
     props.setHoles((prevHoles) => {
@@ -44,12 +46,16 @@ export default function StartGame(props) {
 
     startMoleSpawner();
   };
+
+
   const resetGame = () => {
     props.setStarted(false);
     props.setTime(GAME_DURATION);
     props.setScore(0);
     props.setHoles(Array(NUMBER_OF_HOLES).fill(null));
   };
+
+
   const startGameTimer = () => {
     timerRef.current = setInterval(() => {
       props.setTime((prevTime) => {
@@ -61,10 +67,14 @@ export default function StartGame(props) {
       });
     }, 1000);
   };
+
+
   const endGame = () => {
     clearAllTimers();
     props.setStarted(false);
   };
+
+
   const clearAllTimers = () => {
     if (timerRef.current) {
       clearInterval(timerRef.current);
@@ -81,6 +91,8 @@ export default function StartGame(props) {
       }
     });
   };
+
+
   return (
     <div id="lawn">
       <div onClick={startGame} className="hole start"></div>

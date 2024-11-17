@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 export default function MainToDo(props) {
   const [show, setShow] = useState(true);
@@ -17,7 +16,6 @@ export default function MainToDo(props) {
   const toShowOrhide = () => {
     setShow(!show);
   };
- 
 
   const startEditing = (id) => {
     setEditingId(id);
@@ -38,7 +36,6 @@ export default function MainToDo(props) {
     );
     setEditingId(null);
   };
-
 
   const deleteTodo = (id) => {
     props.setTodos(props.todos.filter((todo) => todo.id !== id));
